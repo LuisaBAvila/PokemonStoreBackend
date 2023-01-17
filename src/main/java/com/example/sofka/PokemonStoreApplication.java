@@ -1,4 +1,4 @@
-package com.example.Sofka;
+package com.example.sofka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
