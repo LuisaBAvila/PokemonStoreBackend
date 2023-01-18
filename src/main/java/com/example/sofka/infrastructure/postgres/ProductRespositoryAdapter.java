@@ -24,12 +24,8 @@ public class ProductRespositoryAdapter implements ProductRepository {
     }
 
     @Override
-    public List<Product> findAllProductsInventory(Product listProduct) {
-        ExampleMatcher ignorNullProduct = ExampleMatcher.matchingAll()
-                .withIgnoreCase()
-                .withIgnoreNullValues();
-
-        return this.iProductRepository.findAll(Example.of(listProduct,ignorNullProduct));
+    public List<Product> findAllProductsInventory() {
+        return this.iProductRepository.findAll();
     }
 
     @Override

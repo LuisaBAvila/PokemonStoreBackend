@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class CreateProductInventoryUseCase {
     private ProductRepository productRepository;
 
-
-
     @Transactional
     public Product apply(ProductDTO productDTO){
         Product product = new Product(productDTO.getId(), productDTO.getName(),
