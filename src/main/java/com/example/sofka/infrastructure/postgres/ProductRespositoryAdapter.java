@@ -3,11 +3,9 @@ package com.example.sofka.infrastructure.postgres;
 import com.example.sofka.domain.Product;
 import com.example.sofka.domain.gateways.ProductRepository;
 import com.example.sofka.infrastructure.adapters.IProductRepository;
-import com.example.sofka.infrastructure.utils.CustomModelMapper;
+import com.example.sofka.infrastructure.utils.MismatchDataException;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -38,6 +36,7 @@ public class ProductRespositoryAdapter implements ProductRepository {
 
     @Override
     public Product updateProduct(String id, Product product) {
+        checkId(id);
         var previusProduct = this.iProductRepository.findById(id).orElse(null);
         if(previusProduct != null) {
            modelMapper.map(product,previusProduct);
@@ -47,10 +46,15 @@ public class ProductRespositoryAdapter implements ProductRepository {
     }
 
 
-
     @Override
     public void deleteProduct(String id) {
-        this.iProductRepository.deleteById(id);
+        checkId(id);
+       this.iProductRepository.deleteById(id);
+    }
 
+    private void checkId(String id) {
+        if (!iProductRepository.existsById(id)) {
+            throw new MismatchDataException("El producto con el id seleccionado no existe" + id);
+        }
     }
 }

@@ -4,6 +4,7 @@ package com.example.sofka.api.controller;
 import com.example.sofka.api.dtos.ProductDTO;
 import com.example.sofka.domain.Product;
 import com.example.sofka.domain.usecase.CreateProductInventoryUseCase;
+import com.example.sofka.domain.usecase.DeleteProductUseCase;
 import com.example.sofka.domain.usecase.FindAllProductsUseCase;
 import com.example.sofka.domain.usecase.UpdateProductUseCase;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public class ProductController {
     private final CreateProductInventoryUseCase createProductInventoryUseCase;
     private final FindAllProductsUseCase findAllProductsUseCase;
     private final UpdateProductUseCase updateProductUseCase;
+    private final DeleteProductUseCase deleteProductUseCase;
 
 
     @GetMapping("/Allproducts")
@@ -42,6 +44,11 @@ public class ProductController {
         return new ResponseEntity<>(
                 this.updateProductUseCase.apply(id, productDTO), HttpStatus.OK
         );
+    }
+
+    @DeleteMapping("/delteProduct/{id}")
+    public void deleteProduct(@PathVariable("id") String id){
+                this.deleteProductUseCase.apply(id);
     }
 
 }
