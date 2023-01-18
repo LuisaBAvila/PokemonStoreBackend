@@ -3,6 +3,9 @@ package com.example.sofka.infrastructure.postgres;
 import com.example.sofka.domain.Product;
 import com.example.sofka.domain.gateways.ProductRepository;
 import com.example.sofka.infrastructure.adapters.IProductRepository;
+import com.example.sofka.infrastructure.utils.CustomModelMapper;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Repository;
@@ -11,12 +14,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@AllArgsConstructor
 public class ProductRespositoryAdapter implements ProductRepository {
     private final IProductRepository iProductRepository;
+    private final ModelMapper modelMapper;
 
-    public ProductRespositoryAdapter(IProductRepository iProductRepository) {
-        this.iProductRepository = iProductRepository;
-    }
+
 
     @Override
     public Product createProductInventory(Product product) {
@@ -25,7 +28,7 @@ public class ProductRespositoryAdapter implements ProductRepository {
 
     @Override
     public List<Product> findAllProductsInventory() {
-        return this.iProductRepository.findAll();
+        return iProductRepository.findAll();
     }
 
     @Override
@@ -34,9 +37,16 @@ public class ProductRespositoryAdapter implements ProductRepository {
     }
 
     @Override
-    public Product updateProduct(Product product) {
-        return this.iProductRepository.save(product);
+    public Product updateProduct(String id, Product product) {
+        var previusProduct = this.iProductRepository.findById(id).orElse(null);
+        if(previusProduct != null) {
+           modelMapper.map(product,previusProduct);
+           return iProductRepository.save(previusProduct);
+        }
+        return null;
     }
+
+
 
     @Override
     public void deleteProduct(String id) {
