@@ -3,10 +3,7 @@ package com.example.sofka.api.controller;
 
 import com.example.sofka.api.dtos.ProductDTO;
 import com.example.sofka.domain.Product;
-import com.example.sofka.domain.usecase.CreateProductInventoryUseCase;
-import com.example.sofka.domain.usecase.DeleteProductUseCase;
-import com.example.sofka.domain.usecase.FindAllProductsUseCase;
-import com.example.sofka.domain.usecase.UpdateProductUseCase;
+import com.example.sofka.domain.usecase.*;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -25,11 +22,19 @@ public class ProductController {
     private final FindAllProductsUseCase findAllProductsUseCase;
     private final UpdateProductUseCase updateProductUseCase;
     private final DeleteProductUseCase deleteProductUseCase;
+    private final FindProductByIdUseCase findProductByIdUseCase;
 
 
     @GetMapping("/Allproducts")
     public ResponseEntity<List<Product>> getAllproducts(){
         return new ResponseEntity<>( this.findAllProductsUseCase.apply(),HttpStatus.OK);
+    }
+
+    @GetMapping("/byId/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable("id") String id){
+        return  new ResponseEntity<>(
+                this.findProductByIdUseCase.apply(id),HttpStatus.OK
+        );
     }
 
     @PostMapping("/add")
