@@ -18,10 +18,10 @@ import javax.validation.Valid;
 public class PurchaseController {
     private final CreatePurchaseUseCase createPurchaseUseCase;
 
-    @PostMapping("/product/{id}")
-    public ResponseEntity<Purchase> postPurchase(@PathVariable("id") String id, @RequestBody @Valid PurchaseDTO purchaseDTO){
+    @PostMapping("/product")
+    public ResponseEntity<Purchase> postPurchase( @RequestBody @Valid PurchaseDTO purchaseDTO){
         return new ResponseEntity<>(
-                this.createPurchaseUseCase.apply(id,purchaseDTO), HttpStatus.CREATED
+                this.createPurchaseUseCase.apply(purchaseDTO), HttpStatus.CREATED
         );
     }
 }

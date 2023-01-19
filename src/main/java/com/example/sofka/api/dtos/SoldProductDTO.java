@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SoldProductDTO {
     protected Integer quantity;
+    protected String idClient;
 
 }

@@ -6,6 +6,8 @@ import com.example.sofka.infrastructure.adapters.ISoldProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @AllArgsConstructor
 public class SoldProdcutRepositoryAdapater implements SoldProdcutRespository {
@@ -15,5 +17,10 @@ public class SoldProdcutRepositoryAdapater implements SoldProdcutRespository {
     @Override
     public SoldProduct createSoldProduct(SoldProduct soldProduct) {
         return this.iSoldProduct.save(soldProduct);
+    }
+
+    @Override
+    public List<SoldProduct> findAllSoldProducts() {
+        return iSoldProduct.findAll();
     }
 }

@@ -7,7 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
-import java.util.Set;
+import java.util.List;
+
 
 @Document(value = "SalesCart")
 @Getter
@@ -19,9 +20,9 @@ public class Purchase {
     private String idType;
     private String idClient;
     private String clientName;
-    private Set<Product> products;
+    private List<SoldProduct> products;
 
-    public Purchase(String idSale, Instant date, String idType, String idClient, String clientName, Set<Product> products) {
+    public Purchase(String idSale, Instant date, String idType, String idClient, String clientName, List<SoldProduct> products) {
         this.idSale = idSale;
         this.date = date;
         this.idType = idType;
