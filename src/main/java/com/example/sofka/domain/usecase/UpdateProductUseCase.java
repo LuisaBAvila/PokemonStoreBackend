@@ -18,5 +18,6 @@ public class UpdateProductUseCase {
                 productDTO.getInventory(),productDTO.getEnabled(),
                 productDTO.getMinProducts(), productDTO.getMaxProducts());
         return this.productRepository.updateProduct(id, product);
+
     }
 }

@@ -25,4 +25,7 @@ public class Product {
         this.minProducts = minProducts;
         this.maxProducts = maxProducts;
     }
+
+    public Product() {
+    }
 }

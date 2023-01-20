@@ -18,7 +18,10 @@ public class CreateProductInventoryUseCase {
         Product product = new Product(productDTO.getId(), productDTO.getName(),
                 productDTO.getInventory(),productDTO.getEnabled(),
                 productDTO.getMinProducts(), productDTO.getMaxProducts());
-        return this.productRepository.createProductInventory(product);
+
+       var producto =  productRepository.createProductInventory(product);
+       return producto;
+
     }
 
 }
