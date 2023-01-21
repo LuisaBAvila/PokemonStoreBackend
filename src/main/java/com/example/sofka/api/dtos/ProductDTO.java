@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -20,13 +21,15 @@ public class ProductDTO {
     @NotBlank(message = "The product name cannot be empty")
     protected String name;
 
+    @NotNull(message = "Este campo no puede quedar vacio")
     protected Integer inventory;
 
+    @NotNull(message = "Este campo no puede quedar vacio")
     protected Boolean enabled;
-
+    @NotNull(message = "Este campo no puede quedar vacio")
     protected Integer minProducts;
 
-
+    @NotNull(message = "Este campo no puede quedar vacio")
     protected Integer maxProducts;
 
 

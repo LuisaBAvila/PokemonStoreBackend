@@ -19,8 +19,8 @@ public class CreateProductInventoryUseCase {
                 productDTO.getInventory(),productDTO.getEnabled(),
                 productDTO.getMinProducts(), productDTO.getMaxProducts());
 
-       var producto =  productRepository.createProductInventory(product);
-       return producto;
+
+       return productRepository.createProductInventory(product);
 
     }
 

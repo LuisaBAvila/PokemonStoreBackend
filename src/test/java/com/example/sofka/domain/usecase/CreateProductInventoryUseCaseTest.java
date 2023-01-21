@@ -8,13 +8,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 
-import java.util.Optional;
+
 
 import static org.mockito.Mockito.*;
 
@@ -33,10 +32,10 @@ class CreateProductInventoryUseCaseTest {
         var product = new Product("115e","banana",50,
                 true,1,20);
 
-        lenient().when(productRepository.createProductInventory(product)).thenReturn(product);
+        lenient().when(productRepository.createProductInventory(any())).thenReturn(product);
        var productSave= useCase.apply(new ProductDTO("115e","banana",50,
                 true,1,20));
-        //verify(productRepository).findProductById(product.getId());
+
         Assertions.assertEquals(product,productSave);
 
 
