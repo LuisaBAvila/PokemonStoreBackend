@@ -27,4 +27,5 @@ En la carpeta contoller podemos encontrar las diferentes rutas o endpoints que p
 http://localhost:8080/swagger-ui/index.html#/
 # Coleción Postman
 https://red-moon-680989.postman.co/workspace/7730bdbb-745f-4289-bc87-c1ece53bea81/collection/25387800-06fff008-bca8-4ffa-813b-186d21b9640b?action=share&creator=25387800
+#Covertura Test
 ![Image text](https://github.com/LuisaBAvila/PokemonStoreBackend/blob/main/Captura.PNG)
