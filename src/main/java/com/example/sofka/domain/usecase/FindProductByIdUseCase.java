@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
 public class FindProductByIdUseCase {
     private final ProductRepository productRepository;
     public Product apply(String id){
-        return this.productRepository.findProductById(id).orElse(null);
+        return this.productRepository.findProductById(id).orElseThrow(()-> new IllegalArgumentException("El producto con el id no se encuentra"));
     }
 }
